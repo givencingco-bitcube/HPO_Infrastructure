@@ -9,19 +9,12 @@ module "EC2-security-group" {
   /*===Inbound Rules===*/
   ingress_with_cidr_blocks = [
     {
-      from_port       = 0
-      to_port         = 0
-      protocol        = "-1"
+      from_port       = 80
+      to_port         = 80
+      protocol        = "tcp"
       security_groups = module.ALB-security-group.security_group_id
 
       description = "Allow traffic only from the ALB security group"
-    },
-    {
-      from_port   = 0
-      to_port     = 0
-      protocol    = "-1"
-      cidr_blocks = "0.0.0.0/0"
-      description = "Allow all outbound traffic"
     }
 
 
@@ -37,10 +30,6 @@ module "EC2-security-group" {
       description = "Allow all outbound traffic"
     }
   ]
-
-  tags = {
-    Name = "EC2-SG"
-  }
 }
 
 /* ==========Security Group for Application Load Balancer (Internet --> ALB)============*/
@@ -67,13 +56,6 @@ module "ALB-security-group" {
       protocol    = "tcp"
       cidr_blocks = "0.0.0.0/0"
       description = "Allow HTTPS outbound traffic"
-    },
-
-    {
-      from_port   = 5432
-      to_port     = 5432
-      protocol    = "tcp"
-      cidr_blocks = "0.0.0.0/0"
     }
   ]
 

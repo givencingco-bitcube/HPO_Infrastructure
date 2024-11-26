@@ -8,3 +8,15 @@ variable "image_repo_name" {
   type        = string
   default     = "hpo-api-image"
 }
+
+variable "ecr_repo_url" {
+  description = "ECS Cluster Name"
+  type        = string
+  default = "hpo-staging-api-cluster"
+}
+
+variable "container_port" {
+  description = "ECS Cluster Name"
+  type        = string
+  default = 3000
+}

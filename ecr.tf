@@ -10,3 +10,7 @@ resource "aws_ecr_repository" "hpo_repository" {
     prevent_destroy = false
   }
 }
+
+output "repository_url" {
+  value = aws_ecr_repository.hpo_repository.repository_url
+}
